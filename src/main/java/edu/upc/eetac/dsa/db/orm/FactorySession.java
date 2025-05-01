@@ -37,6 +37,8 @@ public class FactorySession {
     }
 
     public static Session openSession(String url, String user, String password) {
+
+
         return null;
     }
 }

@@ -15,7 +15,7 @@ public class QueryHelperTest {
     public void testQueryINSERT() {
 /*        Assert.assertEquals("INSERT INTO Employee (ID, name, surname, address, birthDay, salary) VALUES (?, ?, ?, ?, ?, ?)",
                 QueryHelper.createQueryINSERT(new Employee("Juan", "lopez", 333333)));*/
-        Assert.assertEquals("INSERT INTO Employee (ID, name, surname, address, birthDay, genere, salary) VALUES (?, ?, ?, ?, ?, ?, ?)",
+        Assert.assertEquals("INSERT INTO Employee (ID, name, surname, address, birthDay, genere, email, salary) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
                 QueryHelper.createQueryINSERT(new Employee("Juan", "lopez", "juan@upc.edu", 333333)));
 
     }
@@ -29,7 +29,7 @@ public class QueryHelperTest {
     @Test
     public void testQueryINSERT3() {
 
-        Assert.assertEquals("INSERT INTO   (ID, name) VALUES (?, ?)",
+        Assert.assertEquals("INSERT INTO Partida (ID, name) VALUES (?, ?)",
                 QueryHelper.createQueryINSERT(new Partida()));
     }
 

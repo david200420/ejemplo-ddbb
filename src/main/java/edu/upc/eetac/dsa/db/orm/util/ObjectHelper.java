@@ -3,9 +3,9 @@ package edu.upc.eetac.dsa.util;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-
+// Basicamente esta classe sirve para poder saber los atributos y poder
 public class ObjectHelper {
-    public static String[] getFields(Object entity) {
+    public static String[] getFields(Object entity) { // Sirve para poder coger los atributos del objeto
 
         Class theClass = entity.getClass();
 
@@ -22,18 +22,39 @@ public class ObjectHelper {
 
 
     public static void setter(Object object, String property, Object value) {
-        // Method // invoke
-        // property="name";
-        // value ="toni"
-        /*Employee e =
-                e.setName("toni")
-          */
-
+        //objeto es la classe, propety es el atributo y value pues el valor que le queremos meter
+        Class theClass = object.getClass();
+        Field[] fields = theClass.getDeclaredFields();
+        for (Field f: fields) {
+            if (f.getName().equals(property)) {
+                f.setAccessible(true);//por si el atributo es private nos deja modificarlo esta linea
+                try {
+                    f.set(object, value);
+                    return; // importante para cerrar el bucle
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+//Aqui lo que acabamos de hacer es primero sacar los atributos del la classe del objeto, despues hemos hecho un
+                //fotr para recorrer el vector de los atributos hasta encontrar el que se llama igual que prepery
+                //lo siguiente ha sifo meter el valor "value" a
+            }
+        }
     }
 
     public static Object getter(Object object, String property) {
-        // Method // invoke
+        Class theClass = object.getClass();
+        Field[] fields = theClass.getDeclaredFields();
+        for (Field f: fields) {
 
+            if (f.getName().equals(property)) {
+                f.setAccessible(true);//por si el atributo es private nos deja modificarlo esta linea
+                try {
+                    return f.get(object);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
         return null;
     }
 }

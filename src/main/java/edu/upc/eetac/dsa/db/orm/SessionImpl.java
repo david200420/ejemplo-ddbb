@@ -13,6 +13,7 @@ public class SessionImpl implements Session {
     private final Connection conn;
 
     public SessionImpl(Connection conn) {
+
         this.conn = conn;
     }
 
@@ -22,7 +23,6 @@ public class SessionImpl implements Session {
         // INSERT INTO Partida () ()
         String insertQuery = QueryHelper.createQueryINSERT(entity);
         // INSERT INTO User (ID, lastName, firstName, address, city) VALUES (0, ?, ?, ?,?)
-
 
         PreparedStatement pstm = null;
 
