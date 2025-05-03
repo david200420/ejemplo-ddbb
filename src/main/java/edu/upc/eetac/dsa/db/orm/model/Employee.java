@@ -39,9 +39,7 @@ public class Employee {
 
     private double salary;
 
-    public Employee() {
-
-    }
+    public Employee() {}
 
     public String getName() {
         return name;
@@ -53,10 +51,6 @@ public class Employee {
 
     public double getSalary() {
         return salary;
-    }
-
-    public Employee(String  name, String surname, double salary) {
-        this(name, surname, "", salary);
     }
 
     public Employee(String  name, String surname, String email, double salary) {

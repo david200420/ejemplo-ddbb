@@ -27,7 +27,7 @@ public class FactorySession {
 
         Connection connection = null;
         try {
-            DriverManager.getConnection("jdbc:mariadb://"+host+":"+port+"/"+
+           connection = DriverManager.getConnection("jdbc:mariadb://"+host+":"+port+"/"+
                     db+"?user="+user+"&password="+pass);
         } catch (Exception e) {
             e.printStackTrace();
@@ -37,8 +37,15 @@ public class FactorySession {
     }
 
     public static Session openSession(String url, String user, String password) {
+        Session session = null;
+    //Basicamenete en vez de utilizar los DButils que vienen por defecto se usan los que le ponemos
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mariadb://" + url, user, password);
+            session = new SessionImpl(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-
-        return null;
+        return session;
     }
 }

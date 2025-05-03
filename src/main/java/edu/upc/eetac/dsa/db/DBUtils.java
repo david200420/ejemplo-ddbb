@@ -6,10 +6,10 @@ import java.sql.SQLException;
 
 public class DBUtils {
 
-    public static final String DB_NAME = "dsaDB";
+    public static final String DB_NAME = "dsaApp";
     public static final String DB_HOST = "127.0.0.1";
-    public static final String DB_USER = "userDB";
-    public static final String DB_PASS = "ds4m0l4";
+    public static final String DB_USER = "root";
+    public static final String DB_PASS = "Eljoda";
     public static final String DB_PORT = "3306";
 
     public static String getDb() {

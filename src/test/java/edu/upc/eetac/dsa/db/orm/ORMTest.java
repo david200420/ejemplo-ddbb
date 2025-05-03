@@ -13,10 +13,10 @@ public class ORMTest {
        String password = "1234";
 
         Session session = FactorySession.openSession(); //url, user, password);
-        Employee employee = new Employee("idXXX", "Pepito", 23223);
+        Employee employee = new Employee("1", "Pepito","ds@gmail.com" ,23);
         session.save(employee); // INSERT INTO employee (idXXX, pepito, ...)
 
-        ///
+        //
         // POST ==> hi ha un nou usuari a la taula POU
         //
     }
@@ -25,11 +25,12 @@ public class ORMTest {
     public void loginTest() {
         String url = "127.0.0.1";
         String user = "root";
-        String password = "1234";
+        String password = "Eljoda";
 
         Session session = FactorySession.openSession(url, user, password);
-//        Employee e = (Employee)session.get(Employee.class, "idXXX");
-//        Employee e = (Employee)session.get(Employee.class, "email", "toni@upc.edu");
+
+        Employee e = (Employee)session.get(Employee.class, "idXXX");
+        Employee es = (Employee)session.getEmail(Employee.class, "email", "toni@upc.edu");
 
 
 

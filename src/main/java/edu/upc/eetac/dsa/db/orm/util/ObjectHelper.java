@@ -1,9 +1,9 @@
-package edu.upc.eetac.dsa.util;
+package edu.upc.eetac.dsa.db.orm.util;
 
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-// Basicamente esta classe sirve para poder saber los atributos y poder
+
 public class ObjectHelper {
     public static String[] getFields(Object entity) { // Sirve para poder coger los atributos del objeto
 
@@ -35,7 +35,7 @@ public class ObjectHelper {
                     e.printStackTrace();
                 }
 //Aqui lo que acabamos de hacer es primero sacar los atributos del la classe del objeto, despues hemos hecho un
-                //fotr para recorrer el vector de los atributos hasta encontrar el que se llama igual que prepery
+                //for para recorrer el vector de los atributos hasta encontrar el que se llama igual que propery
                 //lo siguiente ha sifo meter el valor "value" a
             }
         }

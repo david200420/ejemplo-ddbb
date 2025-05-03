@@ -1,4 +1,4 @@
-package edu.upc.eetac.dsa.util;
+package edu.upc.eetac.dsa.db.orm.util;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +12,7 @@ public class QueryHelper {
         sb.append(entity.getClass().getSimpleName()).append(" ");
         sb.append("(");
 
-        String [] fields = edu.upc.eetac.dsa.util.ObjectHelper.getFields(entity);
+        String [] fields = edu.upc.eetac.dsa.db.orm.util.ObjectHelper.getFields(entity);
 
         sb.append("ID");
         for (String field: fields) {
@@ -32,6 +32,13 @@ public class QueryHelper {
         StringBuffer sb = new StringBuffer();
         sb.append("SELECT * FROM ").append(entity.getClass().getSimpleName());
         sb.append(" WHERE ID = ?");
+
+        return sb.toString();
+    }
+    public static String createQuerySELECTemail(Object entity) {
+        StringBuffer sb = new StringBuffer();
+        sb.append("SELECT * FROM ").append(entity.getClass().getSimpleName());
+        sb.append(" WHERE email = ?");
 
         return sb.toString();
     }

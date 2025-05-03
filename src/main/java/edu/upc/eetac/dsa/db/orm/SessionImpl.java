@@ -1,8 +1,7 @@
 package edu.upc.eetac.dsa.db.orm;
-
 import edu.upc.eetac.dsa.db.orm.Session;
-import edu.upc.eetac.dsa.util.ObjectHelper;
-import edu.upc.eetac.dsa.util.QueryHelper;
+import edu.upc.eetac.dsa.db.orm.util.ObjectHelper;
+import edu.upc.eetac.dsa.db.orm.util.QueryHelper;
 
 import java.sql.*;
 import java.util.HashMap;
@@ -18,7 +17,6 @@ public class SessionImpl implements Session {
     }
 
     public void save(Object entity) {
-
 
         // INSERT INTO Partida () ()
         String insertQuery = QueryHelper.createQueryINSERT(entity);
@@ -49,33 +47,32 @@ public class SessionImpl implements Session {
 
     @Override
     public Object get(Class theClass, Object ID) {
-        return null;
-    }
+        Object o = null;
+        try {
+            String sql = QueryHelper.createQuerySELECT(theClass);  // En esta linea se hace la peticion sql con el Query Helper
+            //pero sale con interrogantes los valores del WHERE
+            PreparedStatement pstm = conn.prepareStatement(sql);//Es un objeto de SQL que permite ejecutar las peticiones
+            pstm.setObject(1, ID);  // sustituye ? por el ID
 
-    public Object get(Class theClass, int ID) {
-/*
-        String sql = QueryHelper.createQuerySELECT(theClass);
+            ResultSet res = pstm.executeQuery();//ejecuta la queryx
 
-        Object o = theClass.newInstance();
+            if (res.next()) { //mira si la primera file del res esta vacia o no
+                o = theClass.getDeclaredConstructor().newInstance(); //crea un objeto vacio de la classe que se quiere obtener
+                ResultSetMetaData rsmd = res.getMetaData();//te da info de cuantas columnas filas hay
+                int numColumns = rsmd.getColumnCount();//basicamente para saber los atributos que tiene
 
+                for (int i = 1; i <= numColumns; i++) {
+                    String columnName = rsmd.getColumnName(i);//el nombre del atributo
+                    Object value = res.getObject(i);//el valor de la celda
+                    ObjectHelper.setter(o, columnName, value);  // llama al setter del helper
+                }
+            }
 
-        ResultSet res = null;
-
-        ResultSetMetaData rsmd = res.getMetaData();
-
-        int numColumns = rsmd.getColumnCount();
-        int i=0;
-
-        while (i<numColumns) {
-            String key = rsmd.getColumnName(i);
-            String value = res.getObject(i);
-
-            ObjectHelper.setter(o, key, value);
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-*/
-        return null;
+        return o;
     }
 
     public void update(Object object) {
