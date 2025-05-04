@@ -36,7 +36,8 @@ public class EmployeeDAOImpl implements IEmployeeDAO {
         Employee employee = null;
         try {
             session = FactorySession.openSession();
-            employee = (Employee)session.get(Employee.class, employeeID);
+            employee = (Employee)session.get(Employee.class, "id", employeeID);//aunq no tiene campo ID ns a
+                                                                                    //que campo se refiere
         }
         catch (Exception e) {
             // LOG

@@ -29,8 +29,8 @@ public class ORMTest {
 
         Session session = FactorySession.openSession(url, user, password);
 
-        Employee e = (Employee)session.get(Employee.class, "idXXX");
-        Employee es = (Employee)session.getEmail(Employee.class, "email", "toni@upc.edu");
+        Employee e = (Employee)session.get(Employee.class,"id" , "idxxx");
+        Employee es = (Employee)session.get(Employee.class, "email", "toni@upc.edu");
 
 
 

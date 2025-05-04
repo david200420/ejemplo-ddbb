@@ -2,7 +2,7 @@ package edu.upc.eetac.dsa.db.orm;
 
 import edu.upc.eetac.dsa.db.orm.model.*;
 
-import edu.upc.eetac.dsa.util.QueryHelper;
+import edu.upc.eetac.dsa.db.orm.util.QueryHelper;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -37,13 +37,13 @@ public class QueryHelperTest {
     @Test
     public void testQuerySELECT() {
         Assert.assertEquals("SELECT * FROM Employee WHERE ID = ?",
-                QueryHelper.createQuerySELECT(new Employee("Juan", "lopez", "",333333)));
+                QueryHelper.createQuerySELECT(new Employee("Juan", "lopez", "",333333), "ID"));
     }
 
     @Test
     public void testQuerySELECT2() {
         Assert.assertEquals("SELECT * FROM Deparment WHERE ID = ?",
-                QueryHelper.createQuerySELECT(new Deparment("ENTEL", "ENGINYERIA TELEMÀTICA")));
+                QueryHelper.createQuerySELECT(new Deparment("ENTEL", "ENGINYERIA TELEMÀTICA"), "ID"));
     }
 
     @Test

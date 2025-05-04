@@ -46,11 +46,11 @@ public class SessionImpl implements Session {
     }
 
     @Override
-    public Object get(Class theClass, Object ID) {
+    public Object get(Class theClass, String filtro, Object ID) {
         Object o = null;
         try {
-            String sql = QueryHelper.createQuerySELECT(theClass);  // En esta linea se hace la peticion sql con el Query Helper
-            //pero sale con interrogantes los valores del WHERE
+            String sql = QueryHelper.createQuerySELECT(theClass, filtro);  // En esta linea se hace la peticion sql con el Query Helper
+            //pero sale con interrogantes los valores del WHERE, t lo buscamos por el atributo
             PreparedStatement pstm = conn.prepareStatement(sql);//Es un objeto de SQL que permite ejecutar las peticiones
             pstm.setObject(1, ID);  // sustituye ? por el ID
 
