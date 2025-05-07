@@ -1,6 +1,7 @@
 package edu.upc.eetac.dsa.db.orm;
 
 import edu.upc.eetac.dsa.db.orm.model.Employee;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class ORMTest {
@@ -12,8 +13,8 @@ public class ORMTest {
        String user = "root";
        String password = "1234";
 
-        Session session = FactorySession.openSession(); //url, user, password);
-        Employee employee = new Employee("1", "Pepito","ds@gmail.com" ,23);
+       Session session = FactorySession.openSession("127.0.0.1:3306/dsaapp", "root", "Eljoda");
+        Employee employee = new Employee("idxxx","1", "Pepito","ds@gmail.com" ,23);
         session.save(employee); // INSERT INTO employee (idXXX, pepito, ...)
 
         //
@@ -23,16 +24,13 @@ public class ORMTest {
 
     @Test
     public void loginTest() {
-        String url = "127.0.0.1";
-        String user = "root";
-        String password = "Eljoda";
+       registerTest();
+        Session session = FactorySession.openSession("127.0.0.1:3306/dsaapp", "root", "Eljoda");
 
-        Session session = FactorySession.openSession(url, user, password);
-
-        Employee e = (Employee)session.get(Employee.class,"id" , "idxxx");
-        Employee es = (Employee)session.get(Employee.class, "email", "toni@upc.edu");
-
-
+        Employee e  = (Employee) session.get(Employee.class, "id",    "idxxx");
+        Employee es = (Employee) session.get(Employee.class, "email", "ds@gmail.com");
+        System.out.println(e.getName());
+        Assert.assertEquals(e.getId(), es.getId());
 
     }
 }

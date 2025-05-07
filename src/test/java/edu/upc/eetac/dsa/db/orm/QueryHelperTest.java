@@ -16,7 +16,7 @@ public class QueryHelperTest {
 /*        Assert.assertEquals("INSERT INTO Employee (ID, name, surname, address, birthDay, salary) VALUES (?, ?, ?, ?, ?, ?)",
                 QueryHelper.createQueryINSERT(new Employee("Juan", "lopez", 333333)));*/
         Assert.assertEquals("INSERT INTO Employee (ID, name, surname, address, birthDay, genere, email, salary) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-                QueryHelper.createQueryINSERT(new Employee("Juan", "lopez", "juan@upc.edu", 333333)));
+                QueryHelper.createQueryINSERT(new Employee("Juan", "lopez","",  "juan@upc.edu", 333333)));
 
     }
 
@@ -37,7 +37,7 @@ public class QueryHelperTest {
     @Test
     public void testQuerySELECT() {
         Assert.assertEquals("SELECT * FROM Employee WHERE ID = ?",
-                QueryHelper.createQuerySELECT(new Employee("Juan", "lopez", "",333333), "ID"));
+                QueryHelper.createQuerySELECT(new Employee("Juan", "lopez","",  "",333333), "ID"));
     }
 
     @Test

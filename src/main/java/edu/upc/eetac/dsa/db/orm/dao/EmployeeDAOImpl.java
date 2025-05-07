@@ -12,12 +12,12 @@ import java.util.List;
 public class EmployeeDAOImpl implements IEmployeeDAO {
 
 
-    public int addEmployee(String name, String surname, double salary) {
+    public int addEmployee(String id, String name, String surname, double salary) {
         Session session = null;
         int employeeID = 0;
         try {
             session = FactorySession.openSession();
-            Employee employee = new Employee(name, surname, "",salary);
+            Employee employee = new Employee(id, name, surname, "",salary);
             session.save(employee);
         }
         catch (Exception e) {

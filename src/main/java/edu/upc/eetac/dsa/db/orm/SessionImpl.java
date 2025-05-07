@@ -20,20 +20,19 @@ public class SessionImpl implements Session {
 
         // INSERT INTO Partida () ()
         String insertQuery = QueryHelper.createQueryINSERT(entity);
-        // INSERT INTO User (ID, lastName, firstName, address, city) VALUES (0, ?, ?, ?,?)
+        // INSERT INTO User (ID, lastName, firstName, address, city) VALUES (0, ?, ?, ?,?), he hecho qe sea todo interrogantes
 
         PreparedStatement pstm = null;
 
         try {
             pstm = conn.prepareStatement(insertQuery);
-            pstm.setObject(1, 0);
-            int i = 2;
+            int i = 1;
 
             for (String field: ObjectHelper.getFields(entity)) {
                 pstm.setObject(i++, ObjectHelper.getter(entity, field));
             }
 
-            pstm.executeQuery();
+            pstm.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
